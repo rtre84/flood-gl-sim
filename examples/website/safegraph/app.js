@@ -9,7 +9,8 @@ import {load} from '@loaders.gl/core';
 import {CSVLoader} from '@loaders.gl/csv';
 
 // Set your mapbox token here
-mapboxgl.accessToken = process.env.MapboxAccessToken; // eslint-disable-line
+// mapboxgl.accessToken = process.env.MapboxAccessToken; // eslint-disable-line
+mapboxgl.accessToken = "pk.eyJ1IjoicnRyZTg0IiwiYSI6ImNrdWFidmtoMjBmZHYyb2s2ZzZuc3lzcTEifQ.Bw-mBGK9SE-HTU2ZEYMs-w";
 
 const colorScale = scaleLog()
   .domain([10, 100, 1000, 10000])
@@ -27,6 +28,8 @@ export function renderToDOM(container, data) {
   });
 
   map.addControl(new mapboxgl.NavigationControl(), 'top-left');
+  map.addControl(new mapboxgl.ScaleControl(), 'top-right');
+  map.addControl(new mapboxgl.GeolocateControl(), 'bottom-left');
 
   map.on('load', () => {
     map.addLayer({
